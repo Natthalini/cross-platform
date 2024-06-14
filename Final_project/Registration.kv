@@ -1,0 +1,136 @@
+ScreenManager:
+    FirstScreen:
+    SecondScreen:
+
+<FirstScreen>:
+    name: 'first'
+    canvas.before:
+        Color:
+            rgba: 0.5,0.3,0.7,1  # สีพื้นหลัง (rgba)
+        Rectangle:
+            pos: self.pos
+            size: self.size    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        Image:
+            source: 'logo.png'
+            size_hint: 1, 0.2
+        AnchorLayout:
+            anchor_y: 'top'
+            size_hint: 1, None
+            height: self.parent.height * 0.1
+        Label:
+            pos_hint: {'center_y': 1.0}  # เพิ่มตำแหน่งให้สูงขึ้น
+            text: 'ระบบการอบรมใบอนุญาติขับรถ'
+            font_size: '24sp'
+            size_hint: 1, 0.2
+            font_name: 'tahoma'    
+        Button:
+            id: btn_regis
+            text: 'เข้าสู่ระบบ'
+            size_hint: 1, 0.1    
+            font_name: 'tahoma'  
+            background_color: (242, 255, 0, 0.8)  # สีเหลือง (RGBA)
+            color: (0,0,0,1)  
+            on_press: app.root.current = 'second'
+                    
+        Button:           
+            text: 'ลงทะเบียนใหม่'
+            size_hint: 1, 0.1
+            font_name: 'tahoma' 
+            background_color:(128,0,128)
+            color: (0,0,0,1)               
+        Button:
+            text: 'For Foreigner'
+            size_hint: 1, 0.1
+            on_press:
+                app.root.current = 'second'
+                app.root.get_screen('second').ids.username.text = username.text
+                app.root.get_screen('second').ids.email.text = email.text
+            font_name: 'tahoma'
+            background_color: (126, 126, 126, 0.84)
+            color: (0,0,0,1) 
+        Image:
+            source: 'png1.png'
+            size_hint: 0, 0.2 
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        Label:
+            text: 'Copyrights (สงวนลิขสิทธิ์) 2021'   
+            font_size: '15sp'
+            size_hint: 1, 0.2
+            font_name: 'tahoma'
+        Label:
+            text: 'กรมการขนส่งทางบก|dlt.go.th'
+            font_size: '15sp'
+            size_hint: 1, 0.2
+            font_name: 'tahoma'
+
+<SecondScreen>:
+    name: 'second'    
+    canvas.before:
+        Color:
+            rgba: 0.5,0.3,0.7,1  # สีพื้นหลัง (rgba)
+        Rectangle:
+            pos: self.pos
+            size: self.size 
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        Image:
+            source: 'logo.png'
+            size_hint: 1, 0.2
+        AnchorLayout:
+            anchor_y: 'top'
+            size_hint: 1, None
+            height: self.parent.height * 0.1
+        Label:
+            pos_hint: {'center_y': 1.0}  # เพิ่มตำแหน่งให้สูงขึ้น
+            text: 'ระบบการอบรมใบอนุญาติขับรถ'
+            font_size: '24sp'
+            size_hint: 1, 0.2
+            font_name: 'tahoma'    
+        TextInput:
+            id: id_card
+            input_type: 'number'
+            hint_text: 'รหัสประชาชน (13 หลัก)'
+            multiline: False
+            size_hint: 1, 0.1
+            font_name: 'tahoma'  
+       
+        TextInput:
+            id: id_card
+            input_type: 'number'
+            hint_text: 'รหัสประชาชน (13 หลัก) อีกครั้ง '
+            multiline: False
+            size_hint: 1, 0.1
+            font_name: 'tahoma'  
+        TextInput:
+            id: phone_number
+            input_type: 'number'
+            hint_text: 'เบอร์โทรศัพท์ (10 หลัก) '
+            multiline: False
+            size_hint: 1, 0.1
+            font_name: 'tahoma'  
+        TextInput:
+            id: email
+            hint_text: 'อีเมล'
+            multiline: False
+            size_hint: 1, 0.1
+            font_name: 'tahoma'   
+        Button:
+            id: btn_regis
+            text: 'ดำเนินการ'
+            size_hint: 1, 0.1
+            on_press: root.Registration()
+            font_name: 'tahoma'  
+        Button:
+            id: btn_regis
+            text: 'ยังไม่พร้อมบันทึกข้อมูล'
+            size_hint: 0.5, None
+            height: 50
+            disabled: True  # ตั้งค่าเป็นไม่พร้อมใช้งานเริ่มต้น
+            on_press: root.submit_registration()
+           
